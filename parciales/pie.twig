@@ -1,0 +1,13 @@
+<footer class="pie">
+  <div class="contenedor pie__barra">
+    <p>{{ datos.cliente.nombre }} · {{ datos.cliente.ciudad }}</p>
+    <ul class="pie__redes" aria-label="Redes">
+      {% for red in datos.cliente.redes %}
+      {% if red.enlace %}
+      <li><a href="{{ red.enlace }}" target="_blank" rel="noopener noreferrer">{{ red.nombre }}<span class="oculto"> (se abre en una pestaña nueva)</span></a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <p><a href="https://ehundu.com" target="_blank" rel="noopener noreferrer">Hecho con Ehundu<span class="oculto"> (se abre en una pestaña nueva)</span></a></p>
+  </div>
+</footer>

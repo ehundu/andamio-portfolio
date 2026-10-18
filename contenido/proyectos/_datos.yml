@@ -1,0 +1,5 @@
+# Lo que comparten todos los proyectos: no hace falta repetirlo en cada uno. La etiqueta `proyectos` los reúne en la
+# colección que leen la portada y la lista; las etiquetas de cada proyecto se suman a ella y son sus áreas.
+plantilla: proyecto
+etiquetas: [proyectos]
+url: "/proyectos/{{ nombreDeFichero }}/"

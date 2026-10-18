@@ -1,0 +1,14 @@
+# Datos que se repiten en varias páginas. En una plantilla son `datos.cliente.nombre`, y en un texto
+# en Markdown, [dato clave="cliente.nombre"].
+nombre: Ana Ejemplo
+oficio: Diseñadora, desarrolladora y fotógrafa
+lema: Hago cosas que se entienden a la primera.
+email: hola@ejemplo.com
+ciudad: Bilbao
+
+# Tus redes, con la dirección completa. Una que dejes vacía no sale en ninguna parte.
+redes:
+  - nombre: GitHub
+    enlace: https://github.com/ejemplo
+  - nombre: LinkedIn
+    enlace: https://www.linkedin.com/in/ejemplo

@@ -1,0 +1,27 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La portada: la presentación y los proyectos con `destacado: sí` en su front matter, por su `orden` #}
+{% block cuerpo %}
+<div class="contenedor portada">
+  <header class="portada__cabecera">
+    <p class="portada__oficio">{{ datos.cliente.oficio }}</p>
+    <h1>{{ pagina.titulo }}</h1>
+    <div class="prosa">{{ pagina.contenido }}</div>
+    <p class="portada__botones">
+      <a class="boton" href="/proyectos/">Ver los proyectos</a>
+      <a class="boton boton--claro" href="/contacto/">Hablemos</a>
+    </p>
+  </header>
+
+  <section class="portada__destacados" aria-labelledby="destacados">
+    <h2 id="destacados">Proyectos destacados</h2>
+    <ul class="tarjetas">
+      {# `destacado: sí` es un campo propio, así que vale el texto «sí»: solo los campos reservados (borrador, listada…) entienden sí y no como verdadero y falso #}
+      {% for p in coleccion('proyectos')|donde('destacado', 'sí')|orden('orden') %}
+      {% include 'parciales/tarjeta.twig' %}
+      {% endfor %}
+    </ul>
+    <p class="portada__mas"><a href="/proyectos/">Ver todos los proyectos →</a></p>
+  </section>
+</div>
+{% endblock %}

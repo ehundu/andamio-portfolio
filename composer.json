@@ -1,0 +1,37 @@
+{
+    "name": "ehundu/andamio-portfolio",
+    "description": "Un portfolio personal hecho con Ehundu, con proyectos destacados, una ficha por proyecto, filtros por área, sobre mí y contacto, para empezar.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "ehundu",
+        "andamio",
+        "scaffold",
+        "scaffolding",
+        "starter",
+        "skeleton",
+        "portfolio",
+        "portafolio",
+        "plantilla",
+        "sitio-estatico",
+        "generador-de-sitios-estaticos"
+    ],
+    "homepage": "https://ehundu.com/documentacion/empezar/",
+    "require": {
+        "php": ">=8.4",
+        "ehundu/ehundu": "^0.16"
+    },
+    "scripts": {
+        "servir": "ehundu servir",
+        "compilar": "ehundu compilar",
+        "desplegar": "ehundu desplegar"
+    },
+    "scripts-descriptions": {
+        "servir": "Previsualiza el sitio en http://127.0.0.1:8000/ y rehace solo lo que cambia.",
+        "compilar": "Compila el sitio en la carpeta salida/.",
+        "desplegar": "Compila el sitio y lo sube al destino de sitio.yml."
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}

@@ -1,0 +1,16 @@
+{# La tarjeta de un proyecto: su portada, su título, una frase y sus áreas con el año. Recibe `p` (el proyecto).
+   La portada va sin texto alternativo porque el enlace ya se llama como el proyecto. #}
+{% set areas = p.etiquetas|filter(t => t != 'proyectos') %}
+<li class="tarjeta">
+  <a class="tarjeta__enlace" href="{{ p.url }}">
+    {% if p.imagen %}
+    {% set medidas = dimensiones(p.imagen) %}
+    <img class="tarjeta__imagen" src="/{{ p.imagen }}" alt="" loading="lazy"{% if medidas %} width="{{ medidas.ancho }}" height="{{ medidas.alto }}"{% endif %}>
+    {% endif %}
+    <span class="tarjeta__texto">
+      <strong>{{ p.titulo }}</strong>
+      {% if p.descripcion %}<span>{{ p.descripcion }}</span>{% endif %}
+      <span class="tarjeta__datos">{{ areas|join(', ') }}{% if p.anio %} · {{ p.anio }}{% endif %}</span>
+    </span>
+  </a>
+</li>

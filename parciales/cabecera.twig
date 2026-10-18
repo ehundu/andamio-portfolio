@@ -1,0 +1,12 @@
+<header class="cabecera">
+  <div class="contenedor cabecera__barra">
+    <a class="cabecera__nombre" href="/">{{ datos.cliente.nombre }}</a>
+    <nav aria-label="Principal">
+      <ul>
+        {% for entrada in datos.menus.principal %}
+        <li><a href="{{ entrada.enlace }}"{% if activo(entrada.enlace) %} aria-current="page"{% endif %}>{{ entrada.texto }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

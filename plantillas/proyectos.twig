@@ -1,0 +1,15 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La lista de todos los proyectos, con los filtros por área #}
+{% block cuerpo %}
+<div class="contenedor listado">
+  <h1>{{ pagina.titulo }}</h1>
+  {% if pagina.descripcion %}<p class="listado__intro">{{ pagina.descripcion }}</p>{% endif %}
+  {% include 'parciales/areas.twig' %}
+  <ul class="tarjetas">
+    {% for p in coleccion('proyectos')|orden('orden') %}
+    {% include 'parciales/tarjeta.twig' %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

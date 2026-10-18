@@ -1,0 +1,16 @@
+{% extends 'plantillas/base.twig' %}
+
+{# Una página por cada área: la repite `agrupar` en contenido/area.md, con `pagina.grupo` (el nombre de la área) y
+   `pagina.paginas` (sus proyectos) #}
+{% block cuerpo %}
+<div class="contenedor listado">
+  <p class="antetitulo"><a href="/proyectos/">Proyectos</a></p>
+  <h1>{{ pagina.grupo }}</h1>
+  {% include 'parciales/areas.twig' with {actual: pagina.grupo} %}
+  <ul class="tarjetas">
+    {% for p in pagina.paginas|orden('orden') %}
+    {% include 'parciales/tarjeta.twig' %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

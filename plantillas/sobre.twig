@@ -1,0 +1,17 @@
+{% extends 'plantillas/base.twig' %}
+
+{# Sobre mí: el retrato (el `imagen` de su front matter) junto al texto #}
+{% block cuerpo %}
+<article class="contenedor sobre">
+  <header>
+    <h1>{{ pagina.titulo }}</h1>
+  </header>
+  <div class="sobre__rejilla">
+    {% if pagina.imagen %}
+    {% set medidas = dimensiones(pagina.imagen) %}
+    <img class="sobre__retrato" src="/{{ pagina.imagen }}" alt="{{ pagina.imagenAlt }}"{% if medidas %} width="{{ medidas.ancho }}" height="{{ medidas.alto }}"{% endif %}>
+    {% endif %}
+    <div class="prosa">{{ pagina.contenido }}</div>
+  </div>
+</article>
+{% endblock %}

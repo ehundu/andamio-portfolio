@@ -1,0 +1,8 @@
+# El menú de la cabecera. Para añadir una página, una entrada nueva en esta lista
+principal:
+  - texto: Proyectos
+    enlace: /proyectos/
+  - texto: Sobre mí
+    enlace: /sobre-mi/
+  - texto: Contacto
+    enlace: /contacto/

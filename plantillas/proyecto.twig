@@ -1,0 +1,46 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La ficha de un proyecto: su portada, sus datos, el texto (con las imágenes que quieras) y el anterior y el siguiente #}
+{% block cuerpo %}
+{% set proyectos = coleccion('proyectos')|orden('orden') %}
+{% set anterior = proyectos|anterior(pagina) %}
+{% set siguiente = proyectos|siguiente(pagina) %}
+{% set areas = pagina.etiquetas|filter(t => t != 'proyectos') %}
+<article class="contenedor ficha">
+  <header>
+    <p class="antetitulo">
+      <a href="/proyectos/">Proyectos</a>
+      {% for a in areas %} · <a href="/proyectos/area/{{ a|slug }}/">{{ a }}</a>{% endfor %}
+    </p>
+    <h1>{{ pagina.titulo }}</h1>
+    {% if pagina.descripcion %}<p class="ficha__resumen">{{ pagina.descripcion }}</p>{% endif %}
+  </header>
+
+  {% if pagina.imagen %}
+  {% set medidas = dimensiones(pagina.imagen) %}
+  <figure class="ficha__portada">
+    <img src="/{{ pagina.imagen }}" alt="{{ pagina.imagenAlt }}"{% if medidas %} width="{{ medidas.ancho }}" height="{{ medidas.alto }}"{% endif %}>
+  </figure>
+  {% endif %}
+
+  <dl class="ficha__datos">
+    {% if pagina.anio %}<div><dt>Año</dt><dd>{{ pagina.anio }}</dd></div>{% endif %}
+    {% if pagina.rol %}<div><dt>Mi papel</dt><dd>{{ pagina.rol }}</dd></div>{% endif %}
+    {% if pagina.herramientas %}<div><dt>Herramientas</dt><dd>{{ pagina.herramientas|join(', ') }}</dd></div>{% endif %}
+  </dl>
+
+  <div class="prosa">{{ pagina.contenido }}</div>
+
+  {# El botón al proyecto en línea. Un enlace a otra web se abre en una pestaña nueva, con su aviso; uno que no empieza
+     por http (como el «#» de los ejemplos) se queda en la página #}
+  {% if pagina.enlace %}
+  {% set externo = pagina.enlace starts with 'http' %}
+  <p><a class="boton" href="{{ pagina.enlace }}"{% if externo %} target="_blank" rel="noopener noreferrer"{% endif %}>Ver el proyecto{% if externo %}<span class="oculto"> (se abre en una pestaña nueva)</span>{% endif %}</a></p>
+  {% endif %}
+
+  <nav class="pasos" aria-label="Proyecto anterior y siguiente">
+    {% if anterior %}<a href="{{ anterior.url }}" rel="prev"><span>Anterior</span>{{ anterior.titulo }}</a>{% endif %}
+    {% if siguiente %}<a class="pasos__siguiente" href="{{ siguiente.url }}" rel="next"><span>Siguiente</span>{{ siguiente.titulo }}</a>{% endif %}
+  </nav>
+</article>
+{% endblock %}

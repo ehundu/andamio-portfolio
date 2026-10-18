@@ -1,0 +1,19 @@
+{# Los filtros por área: «Todos» y una entrada por cada área que alguno de los proyectos tenga en sus etiquetas.
+   Una área nueva aparece sola, con su página (la crea `agrupar` en contenido/area.md). Recibe `actual`, la área
+   que se está viendo, o nada en la lista de todos los proyectos. #}
+{% set areas = [] %}
+{% for p in coleccion('proyectos') %}
+{% for t in p.etiquetas %}
+{% if t != 'proyectos' and t not in areas %}
+{% set areas = areas|merge([t]) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+<nav class="areas" aria-label="Filtrar por área">
+  <ul>
+    <li><a href="/proyectos/"{% if not actual %} aria-current="page"{% endif %}>Todos</a></li>
+    {% for a in areas|sort %}
+    <li><a href="/proyectos/area/{{ a|slug }}/"{% if a == actual %} aria-current="page"{% endif %}>{{ a }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
